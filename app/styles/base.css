@@ -1,3 +1,7 @@
-.active {
-    color: green;
+#app {
+    text-align: center;
+}
+
+.navi a {
+    margin-right: 10px;
 }

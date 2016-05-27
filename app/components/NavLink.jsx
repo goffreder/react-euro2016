@@ -4,6 +4,12 @@ const { Component } = React;
 
 export default class NavLink extends Component {
     render() {
-        return <Link {...this.props} activeClassName="active" />;
+        return (
+            <Link
+                {...this.props}
+                activeClassName="button-primary"
+                className="button"
+            />
+        );
     }
 }
