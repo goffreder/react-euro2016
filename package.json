@@ -1,0 +1,30 @@
+{
+  "name": "react-euro2016",
+  "version": "1.0.0",
+  "description": "A simple Euro2016 progressive web abb built with React",
+  "main": "webpack.config.js",
+  "scripts": {
+    "check": "npm-check -u",
+    "start": "webpack-dev-server --inline --host 0.0.0.0",
+    "deploy": "NODE_ENV=production webpack -p"
+  },
+  "keywords": [
+    "react",
+    "react-router",
+    "euro2016"
+  ],
+  "author": "goffreder",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "npm-check": "^5.2.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
