@@ -4,13 +4,15 @@ import NavLink from './NavLink';
 import Fixtures from './Fixtures';
 import Teams from './Teams';
 
+const testFixtures = [JSON.parse('{"_links":{"self":{"href":"http://api.football-data.org/v1/fixtures/149855"},"soccerseason":{"href":"http://api.football-data.org/v1/soccerseasons/424"},"homeTeam":{"href":"http://api.football-data.org/v1/teams/773"},"awayTeam":{"href":"http://api.football-data.org/v1/teams/811"}},"date":"2016-06-10T19:00:00Z","status":"TIMED","matchday":1,"homeTeamName":"France","awayTeamName":"Romania","result":{"goalsHomeTeam":null,"goalsAwayTeam":null}}')];
+
 export default class Main extends Component {
     constructor() {
         super();
 
         this.state = {
             activeRoute: '',
-            fixtures: [],
+            fixtures: testFixtures,
             teams: {}
         };
     }
@@ -22,7 +24,7 @@ export default class Main extends Component {
 
         switch (this.state.activeRoute) {
             case 'fixtures':
-                content = <Fixtures />;
+                content = <Fixtures fixtures={this.state.fixtures}/>;
                 break;
             case 'teams':
                 content = <Teams />;

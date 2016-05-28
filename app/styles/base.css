@@ -5,3 +5,7 @@
 .navi a {
     margin-right: 10px;
 }
+
+.fixture > div {
+    display: inline-block;
+}
