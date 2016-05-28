@@ -2,9 +2,7 @@ const { Component } = React;
 
 import NavLink from './NavLink';
 import Fixtures from './Fixtures';
-import Teams from './Teams';
-
-const testFixtures = [JSON.parse('{"_links":{"self":{"href":"http://api.football-data.org/v1/fixtures/149855"},"soccerseason":{"href":"http://api.football-data.org/v1/soccerseasons/424"},"homeTeam":{"href":"http://api.football-data.org/v1/teams/773"},"awayTeam":{"href":"http://api.football-data.org/v1/teams/811"}},"date":"2016-06-10T19:00:00Z","status":"TIMED","matchday":1,"homeTeamName":"France","awayTeamName":"Romania","result":{"goalsHomeTeam":null,"goalsAwayTeam":null}}')];
+import Standings from './Standings';
 
 export default class Main extends Component {
     constructor() {
@@ -12,10 +10,14 @@ export default class Main extends Component {
 
         this.state = {
             activeRoute: '',
-            fixtures: testFixtures,
-            teams: {}
+            fixtures: {},
+            standings: {}
         };
     }
+
+    _saveFixtures = fixtures => this.setState({ fixtures });
+
+    _saveStandings = standings => this.setState({ standings });
 
     _setRoute = activeRoute => this.setState({ activeRoute });
 
@@ -24,10 +26,10 @@ export default class Main extends Component {
 
         switch (this.state.activeRoute) {
             case 'fixtures':
-                content = <Fixtures fixtures={this.state.fixtures}/>;
+                content = <Fixtures saveFixtures={this._saveFixtures} fixtures={this.state.fixtures}/>;
                 break;
-            case 'teams':
-                content = <Teams />;
+            case 'standings':
+                content = <Standings saveStandings={this._saveStandings} standings={this.state.standings}/>;
                 break;
         }
 
@@ -38,8 +40,8 @@ export default class Main extends Component {
                     <NavLink handleClick={() => this._setRoute('fixtures')} active={this.state.activeRoute === 'fixtures'}>
                         {'Fixtures'}
                     </NavLink>
-                    <NavLink handleClick={() => this._setRoute('teams')} active={this.state.activeRoute === 'teams'}>
-                        {'Teams'}
+                    <NavLink handleClick={() => this._setRoute('standings')} active={this.state.activeRoute === 'standings'}>
+                        {'Standings'}
                     </NavLink>
                 </div>
                 {content}

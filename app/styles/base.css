@@ -1,11 +1,18 @@
 #app {
     text-align: center;
+    min-width: 500px;
+    width: 90%;
+    margin: auto;
 }
 
 .navi a {
     margin-right: 10px;
 }
 
-.fixture > div {
-    display: inline-block;
+.fixtures th, .fixtures td {
+    text-align: center;
+}
+
+.standings th, .standings td {
+    text-align: center;
 }

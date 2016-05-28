@@ -1,26 +1,34 @@
-const { Component } = React;
+const { Component, PropTypes } = React;
 
 export default class Fixture extends Component {
+    static propTypes = {
+        date: PropTypes.string.isRequired,
+        result: PropTypes.shape({
+            goalsHomeTeam: PropTypes.number,
+            goalsAwayTeam: PropTypes.number,
+        }).isRequired,
+        homeTeamName: PropTypes.string.isRequired,
+        awayTeamName: PropTypes.string.isRequired
+    }
+
     render() {
-        const result = new Date(this.props.date) > new Date()
-            ? '- : -'
-            : `${this.props.result.goalsHomeTeam} : ${this.props.result.goalsHomeTeam}`;
+        const scoreA = new Date(this.props.date) > new Date() ? '-' : this.props.result.goalsHomeTeam;
+        const scoreB = new Date(this.props.date) > new Date() ? '-' : this.props.result.awayHomeTeam;
 
         const locale = navigator.language;
-        const dateOptions = { weekday: 'long', month: 'long', day: 'numeric' };
         const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
-        const dateString = new Date(this.props.date).toLocaleDateString(locale, dateOptions);
         const timeString = new Date(this.props.date).toLocaleTimeString(locale, timeOptions);
 
         return (
-            <div className="fixture">
-                <div><h4>{this.props.homeTeamName}</h4></div>
-                <div>
-                    <div><h6>{`${dateString} - ${timeString}`}</h6></div>
-                    <div><h5>{result}</h5></div>
-                </div>
-                <div><h4>{this.props.awayTeamName}</h4></div>
-            </div>
+            <tr>
+                <td width="10%"><img width="100%" src={this.props.homeTeamLogo} /></td>
+                <td width="25%"><h4>{this.props.homeTeamName}</h4></td>
+                <td width="10%"><h5>{scoreA}</h5></td>
+                <td width="10%"><h6>{timeString}</h6></td>
+                <td width="10%"><h5>{scoreB}</h5></td>
+                <td width="25%"><h4>{this.props.awayTeamName}</h4></td>
+                <td width="10%"><img width="100%" src={this.props.awayTeamLogo} /></td>
+            </tr>
         );
     }
 }
