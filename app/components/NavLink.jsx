@@ -1,15 +1,16 @@
-import { Link } from 'react-router';
-
 const { Component } = React;
 
 export default class NavLink extends Component {
     render() {
         return (
-            <Link
-                {...this.props}
+            <a
+                href="#"
+                onClick={this.props.handleClick}
                 activeClassName="button-primary"
-                className="button"
-            />
+                className={'button' + (this.props.active ? ' button-primary' : '')}
+            >
+                {this.props.children}
+            </a>
         );
     }
 }
